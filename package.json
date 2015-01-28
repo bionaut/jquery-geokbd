@@ -1,0 +1,23 @@
+{
+  "name": "jquery-geokbd",
+  "version": "1.0.1",
+  "description": "Georgian keyboard convert",
+  "main": "jquery.geokbd.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bionaut/jquery-geokbd.git"
+  },
+  "keywords": [
+    "georgian",
+    "keyboard"
+  ],
+  "author": "blueberryapps",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bionaut/jquery-geokbd/issues"
+  },
+  "homepage": "https://github.com/bionaut/jquery-geokbd"
+}
