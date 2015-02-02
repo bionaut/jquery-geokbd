@@ -13,35 +13,37 @@ $.fn.geokbd = function(options) {
 
 	// first come up with affected set of input elements
 	this.each(function() {
+
 		var $this = $(this);
 
 		if ($this.is(':text, textarea')) {
 			inputs = inputs.add($this);
 		} else if ($this.is('form')) {
 			inputs = inputs.add($this.find(':text, textarea'));
-		} else if ($this.is(':checkbox')) {
-			if (!inputs.length) {
-				inputs = $(':text, textarea');
-			}
-			switchers = switchers.add($this); // store the checkboxes for further manipulation
+		} else if ($this.is(':button')) {
+			switchers = switchers.add($this);
 		}
 
-		if (typeof settings.exclude === 'string') {
-			inputs = inputs.not(settings.exclude);
-		}
 	});
 
 	// mutate switchers
 	switchers
-		.click(function() { toggleLang(); })
-		.wrap('<div class="gk-switcher"></div>')
-		.parent()
-			.append('<div class="gk-ka" /><div class="gk-us" />');
+		.click(function() {
+			if ($(this).data('switch') === 'on') {
+				isOn = true;
+				// toggleLang();
+			}else{
+				isOn = false;
+				// toggleLang();
+			}
+		});
+		// .wrap('<div class="gk-switcher"></div>');
 
 	// turn on/off all switchers
-	toggleLang(isOn = settings.on);
+	toggleLang(isOn = true);
 
 	$(document).keypress(function(e) {
+		
 		var ch = String.fromCharCode(e.which), kach;
 
 		if (settings.hotkey === ch) {
@@ -49,7 +51,9 @@ $.fn.geokbd = function(options) {
 			e.preventDefault();
 		}
 
-		if (!isOn || !inputs.filter(e.target).length) {
+		console.log(isOn);
+
+		if (!isOn) {
 			return;
 		}
 
@@ -65,14 +69,9 @@ $.fn.geokbd = function(options) {
         }
 	});
 
-
-
 	function toggleLang() {
 		isOn = arguments[0] !== undefined ? arguments[0] : !isOn;
 		switchers
-			.each(function() {
-				this.checked = isOn;
-			})
 			.closest('.gk-switcher')[isOn ? 'addClass' : 'removeClass']('gk-on');
 	}
 
