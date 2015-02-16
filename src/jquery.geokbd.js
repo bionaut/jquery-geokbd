@@ -1,13 +1,13 @@
 (function($, undefined) {
 
 $.fn.geokbd = function(options) {
-	var 
-	isOn, 
+	var
+	isOn,
 	inputs = $([]),
 	switchers = $([]),
 	defaults = {
 		on: true,
-		hotkey: '`'
+		hotkey: '~'
 	},
 	settings = (typeof options === 'object' ? $.extend({}, defaults, options) : defaults);
 
@@ -31,19 +31,19 @@ $.fn.geokbd = function(options) {
 		.click(function() {
 			if ($(this).data('switch') === 'on') {
 				isOn = true;
-				// toggleLang();
+				$('.switch').removeClass('active-kbd');
+				$(this).addClass('active-kbd');
 			}else{
+				$('.switch').removeClass('active-kbd');
+				$(this).addClass('active-kbd');
 				isOn = false;
-				// toggleLang();
 			}
 		});
-		// .wrap('<div class="gk-switcher"></div>');
 
-	// turn on/off all switchers
 	toggleLang(isOn = true);
 
 	$(document).keypress(function(e) {
-		
+
 		var ch = String.fromCharCode(e.which), kach;
 
 		if (settings.hotkey === ch) {
@@ -51,7 +51,6 @@ $.fn.geokbd = function(options) {
 			e.preventDefault();
 		}
 
-		console.log(isOn);
 
 		if (!isOn) {
 			return;
@@ -102,10 +101,10 @@ $.fn.geokbd = function(options) {
 			var value = field.value.substr(0, start) + this + field.value.substr(end, field.value.length);
 			field.value = value;
 			field.scrollTop = scroll;
-			field.setSelectionRange(start + this.length, start + this.length); 
+			field.setSelectionRange(start + this.length, start + this.length);
 		} else {
 			field.value += this;
-			field.setSelectionRange(field.value.length, field.value.length);    
+			field.setSelectionRange(field.value.length, field.value.length);
 		}
 	}
 };
