@@ -16,6 +16,8 @@ $.fn.geokbd = function(options) {
 
 		var $this = $(this);
 
+		console.log($this.is(':text'));
+
 		if ($this.is(':text, textarea')) {
 			inputs = inputs.add($this);
 		} else if ($this.is('form')) {
@@ -43,7 +45,7 @@ $.fn.geokbd = function(options) {
 	toggleLang(isOn = true);
 
 	$(document).keypress(function(e) {
-
+		if (e.target.type === 'password' || e.target.type === 'email') {return;}
 		var ch = String.fromCharCode(e.which), kach;
 
 		if (settings.hotkey === ch) {
