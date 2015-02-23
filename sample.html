@@ -8,18 +8,17 @@
 </head>
 <body>
 
-	<button class="switch active-kbd" data-switch="on">on</button>
-	<button class="switch" data-switch="off">off</button>
+	<input class="switch active-kbd" type="checkbox" checked="true">
 
 	<form>
-		<input type="text">
-		<input type="text">
+		<input type="text" placeholder="affected">
+		<input type="text" placeholder="affected">
 		<input placeholder="unaffected" type="password">
 		<input placeholder="unaffected" type="email">
 	</form>
 
 		<input placeholder="unaffected" type="email">
-		<input placeholder="unaffected" type="text">
+		<input placeholder="affected" type="text">
 
 	<script type="text/javascript">
 		$('.switch').geokbd();

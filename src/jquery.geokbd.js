@@ -16,31 +16,27 @@ $.fn.geokbd = function(options) {
 
 		var $this = $(this);
 
-		console.log($this.is(':text'));
-
 		if ($this.is(':text, textarea')) {
 			inputs = inputs.add($this);
 		} else if ($this.is('form')) {
 			inputs = inputs.add($this.find(':text, textarea'));
-		} else if ($this.is(':button')) {
+		} else if ($this.is(':checkbox')) {
 			switchers = switchers.add($this);
 		}
 
 	});
 
-	// mutate switchers
-	switchers
-		.click(function() {
-			if ($(this).data('switch') === 'on') {
-				isOn = true;
-				$('.switch').removeClass('active-kbd');
-				$(this).addClass('active-kbd');
-			}else{
-				$('.switch').removeClass('active-kbd');
-				$(this).addClass('active-kbd');
-				isOn = false;
-			}
-		});
+  // mutate switchers
+  switchers
+    .click(function() {
+      if (!$(this).is(":checked")) {
+        $(this).removeClass('active-kbd');
+        isOn = false;
+      }else{
+        isOn = true;
+        $(this).addClass('active-kbd');
+      }
+    });
 
 	toggleLang(isOn = true);
 
