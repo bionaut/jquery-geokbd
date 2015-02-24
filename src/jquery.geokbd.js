@@ -18,7 +18,9 @@ $.fn.geokbd = function(options) {
 			inputs = inputs.add($this);
 		} else if ($this.is('form')) {
 			inputs = inputs.add($this.find(':text, textarea'));
-		} else if ($this.is(':checkbox') || $this.attr('class','switchButton')) {
+		} else if ($this.is(':checkbox')) {
+			switchers = switchers.add($this);
+		} else if ($this.attr('class') == 'switch switchButton'){
 			switchers = switchers.add($this);
 		}
 	});
@@ -45,7 +47,6 @@ $.fn.geokbd = function(options) {
 			toggleLang();
 			e.preventDefault();
 		}
-
 
 		if (!isOn) {
 			return;
