@@ -20,7 +20,7 @@ $.fn.geokbd = function(options) {
 			inputs = inputs.add($this.find(':text, textarea'));
 		} else if ($this.is(':checkbox')) {
 			switchers = switchers.add($this);
-		} else if ($this.attr('class') == 'switch switchButton'){
+		} else if ($this.hasClass('switchButton')){
 			switchers = switchers.add($this);
 		}
 	});
