@@ -52,6 +52,8 @@ $.fn.geokbd = function(options) {
 			return;
 		}
 
+		if (!$(e.target).is('input')) {return;}
+
 		kach = translateToKa.call(ch);
 
 		if (ch !== kach) {
