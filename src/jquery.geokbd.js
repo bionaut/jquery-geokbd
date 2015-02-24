@@ -13,32 +13,29 @@ $.fn.geokbd = function(options) {
 
 	// first come up with affected set of input elements
 	this.each(function() {
-
 		var $this = $(this);
-
 		if ($this.is(':text, textarea')) {
 			inputs = inputs.add($this);
 		} else if ($this.is('form')) {
 			inputs = inputs.add($this.find(':text, textarea'));
-		} else if ($this.is(':checkbox')) {
+		} else if ($this.is(':checkbox') || $this.attr('class','switchButton')) {
 			switchers = switchers.add($this);
 		}
-
 	});
 
-  // mutate switchers
+	function toggleLang() {
+      $('.switch').toggleClass('active-kbd');
+      isOn = !isOn;
+      $('.switch').prop('checked', isOn);
+	}
+
+
   switchers
     .click(function() {
-      if (!$(this).is(":checked")) {
-        $(this).removeClass('active-kbd');
-        isOn = false;
-      }else{
-        isOn = true;
-        $(this).addClass('active-kbd');
-      }
+    	toggleLang();
     });
 
-	toggleLang(isOn = true);
+	toggleLang(isOn = false);
 
 	$(document).keypress(function(e) {
 		if (e.target.type === 'password' || e.target.type === 'email') {return;}
@@ -65,12 +62,6 @@ $.fn.geokbd = function(options) {
 			}
         }
 	});
-
-	function toggleLang() {
-		isOn = arguments[0] !== undefined ? arguments[0] : !isOn;
-		switchers
-			.closest('.gk-switcher')[isOn ? 'addClass' : 'removeClass']('gk-on');
-	}
 
 
 	function translateToKa() {
