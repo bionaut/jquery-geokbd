@@ -41,8 +41,14 @@ $.fn.geokbd = function(options) {
 
 	$(document).keypress(function(e) {
 		if (e.target.type === 'password' || e.target.type === 'email') {return;}
-		var ch = String.fromCharCode(e.which), kach;
 
+		if ( $(e.target).attr('maxlength') !== undefined ) {
+			var limit = parseInt($(e.target).attr('maxlength'));
+			var currentLength = $(e.target).val().length;
+			if (currentLength >= limit) {return;}
+		}
+
+		var ch = String.fromCharCode(e.which), kach;
 		if (settings.hotkey === ch) {
 			toggleLang();
 			e.preventDefault();
